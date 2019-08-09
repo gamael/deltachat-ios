@@ -171,7 +171,7 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
         }
 
         // assigning swipe by delete to chats
-        let delete = UITableViewRowAction(style: .destructive, title: "Delete") { [unowned self] _, indexPath in
+        let delete = UITableViewRowAction(style: .destructive, title: "Eliminar") { [unowned self] _, indexPath in
             let chatId = chatList.getChatId(index: row)
 			self.showDeleteChatConfirmationAlert(chatId: chatId)
         }
@@ -183,14 +183,14 @@ extension ChatListController: UITableViewDataSource, UITableViewDelegate {
 extension ChatListController {
 	private func showDeleteChatConfirmationAlert(chatId: Int) {
 		let alert = UIAlertController(
-			title: "Do you want to delete the chat?",
+			title: "Quieres eliminar el chat?",
 			message: nil,
 			preferredStyle: .alert
 		)
-		alert.addAction(UIAlertAction(title: "Delete", style: .default, handler: { action in
+		alert.addAction(UIAlertAction(title: "Eliminar", style: .default, handler: { action in
 			self.deleteChat(chatId: chatId)
 		}))
-		alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+		alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
 		self.present(alert, animated: true, completion: nil)
 	}
 	

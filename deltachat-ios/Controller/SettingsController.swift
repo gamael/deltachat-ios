@@ -16,7 +16,7 @@ internal final class SettingsViewController: QuickTableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Settings"
+        title = "Ajustes"
         documentInteractionController.delegate = self as? UIDocumentInteractionControllerDelegate
     }
 
@@ -35,7 +35,7 @@ internal final class SettingsViewController: QuickTableViewController {
                 } else if ui["done"] as! Bool {
                     self.hudHandler.setHudDone(callback: nil)
                 } else {
-                    self.hudHandler.setHudProgress(ui["progress"] as! Int)
+                    self.hudHandler.setHudProgress(ui["progreso"] as! Int)
                 }
             }
         }
@@ -50,7 +50,7 @@ internal final class SettingsViewController: QuickTableViewController {
                 } else if ui["done"] as! Bool {
                     self.hudHandler.setHudDone(callback: nil)
                 } else {
-                    self.hudHandler.setHudProgress(ui["progress"] as! Int)
+                    self.hudHandler.setHudProgress(ui["progreso"] as! Int)
                 }
             }
         }
@@ -85,39 +85,39 @@ internal final class SettingsViewController: QuickTableViewController {
 
     private func setTable() {
         var backupRows = [
-            TapActionRow(text: "Create backup", action: { [weak self] in self?.createBackup($0) }),
+            TapActionRow(text: "Crear Copia De Seguridad", action: { [weak self] in self?.createBackup($0) }),
         ]
 
-        let deleteRow = TapActionRow(text: "Delete Account", action: { [weak self] in self?.deleteAccount($0) })
+        let deleteRow = TapActionRow(text: "Eliminar Cuenta", action: { [weak self] in self?.deleteAccount($0) })
 
         tableContents = [
             Section(
-                title: "User Details",
+                title: "Detalles De Usuario",
                 rows: [
-                    NavigationRow(text: "Display Name", detailText: .value1(DCConfig.displayname ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
-                    NavigationRow(text: "Status", detailText: .value1(DCConfig.selfstatus ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
-                    TapActionRow(text: "Configure my Account", action: { [weak self] in self?.presentAccountSetup($0) }),
+                    NavigationRow(text: "Nombre De ID", detailText: .value1(DCConfig.displayname ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
+                    NavigationRow(text: "Estado", detailText: .value1(DCConfig.selfstatus ?? ""), action: { [weak self] in self?.editNameAndStatus($0)}),
+                    TapActionRow(text: "Configurar Mi cuenta", action: { [weak self] in self?.presentAccountSetup($0) }),
                 ]
             ),
             Section(
-                title: "Flags",
+                title: "Marcar",
                 rows: [
-                    SwitchRow(text: "E2EE enabled", switchValue: DCConfig.e2eeEnabled, action: editCell()),
-                    SwitchRow(text: "Read Receipts", switchValue: DCConfig.mdnsEnabled, action: editCell()),
-                    SwitchRow(text: "Watch Inbox", switchValue: DCConfig.inboxWatch, action: editCell()),
-                    SwitchRow(text: "Watch Sentbox", switchValue: DCConfig.sentboxWatch, action: editCell()),
-                    SwitchRow(text: "Watch Mvbox", switchValue: DCConfig.mvboxWatch, action: editCell()),
-                    SwitchRow(text: "Move to Mvbox", switchValue: DCConfig.mvboxMove, action: editCell()),
-                    SwitchRow(text: "Save Mime Headers", switchValue: DCConfig.saveMimeHeaders, action: editCell()),
+                    SwitchRow(text: "E2EE Habilitar", switchValue: DCConfig.e2eeEnabled, action: editCell()),
+                    SwitchRow(text: "Leer Recipts", switchValue: DCConfig.mdnsEnabled, action: editCell()),
+                    SwitchRow(text: "Revisar Inbox", switchValue: DCConfig.inboxWatch, action: editCell()),
+                    SwitchRow(text: "Revisar Sentbox", switchValue: DCConfig.sentboxWatch, action: editCell()),
+                    SwitchRow(text: "Revisar Mvbox", switchValue: DCConfig.mvboxWatch, action: editCell()),
+                    SwitchRow(text: "Mover A Mvbox", switchValue: DCConfig.mvboxMove, action: editCell()),
+                    SwitchRow(text: "Guardar Mime Headers", switchValue: DCConfig.saveMimeHeaders, action: editCell()),
                 ]
             ),
 
             Section(
-                title: "Backup",
+                title: "Copia De Seguridad",
                 rows: backupRows
             ),
 
-            Section(title: "Danger", rows: [
+            Section(title: "Peligro", rows: [
                 deleteRow,
             ]),
         ]

@@ -249,9 +249,9 @@ class ChatViewController: MessagesViewController {
 
         if disableWriting {
             menuItems = [
-                UIMenuItem(title: "Start Chat", action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
+                UIMenuItem(title: "Iniciar Chat", action: #selector(MessageCollectionViewCell.messageStartChat(_:))),
                 UIMenuItem(title: "Dismiss", action: #selector(MessageCollectionViewCell.messageDismiss(_:))),
-                UIMenuItem(title: "Block", action: #selector(MessageCollectionViewCell.messageBlock(_:))),
+                UIMenuItem(title: "Bloquear", action: #selector(MessageCollectionViewCell.messageBlock(_:))),
             ]
         } else {
             // Configures the UIMenu which is shown when selecting a message
@@ -298,7 +298,7 @@ class ChatViewController: MessagesViewController {
     private func configureMessageInputBar() {
         messageInputBar.delegate = self
         messageInputBar.inputTextView.tintColor = DCColors.primary
-        messageInputBar.inputTextView.placeholder = "Message"
+        messageInputBar.inputTextView.placeholder = "Mensaje cifrado"
         messageInputBar.isTranslucent = true
         messageInputBar.separatorLine.isHidden = true
         messageInputBar.inputTextView.tintColor = DCColors.primary
@@ -757,12 +757,12 @@ extension ChatViewController: MessagesLayoutDelegate {
 
     private func showClipperOptions() {
         let alert = UIAlertController(title: nil, message: nil, preferredStyle: .actionSheet)
-        let photoAction = PhotoPickerAlertAction(title: "Photo", style: .default, handler: photoButtonPressed(_:))
+        let photoAction = PhotoPickerAlertAction(title: "Foto", style: .default, handler: photoButtonPressed(_:))
         let videoAction = PhotoPickerAlertAction(title: "Video", style: .default, handler: videoButtonPressed(_:))
 
         alert.addAction(photoAction)
         alert.addAction(videoAction)
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: nil))
         self.present(alert, animated: true, completion: nil)
     }
 

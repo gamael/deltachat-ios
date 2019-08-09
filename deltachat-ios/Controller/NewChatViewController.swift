@@ -9,7 +9,7 @@ class NewChatViewController: UITableViewController {
         let searchController = UISearchController(searchResultsController: nil)
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
-        searchController.searchBar.placeholder = "Search Contact"
+        searchController.searchBar.placeholder = "Buscar Contacto"
         return searchController
     }()
 
@@ -61,7 +61,7 @@ class NewChatViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        title = "New Chat"
+        title = "Nuevo Chat"
 
         deviceContactHandler.importDeviceContacts()
         navigationItem.searchController = searchController
@@ -158,7 +158,7 @@ class NewChatViewController: UITableViewController {
                 } else {
                     cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
                 }
-                cell.textLabel?.text = "New Group"
+                cell.textLabel?.text = "Nuevo Grupo"
                 cell.textLabel?.textColor = view.tintColor
 
                 return cell
@@ -171,7 +171,7 @@ class NewChatViewController: UITableViewController {
                 } else {
                     cell = UITableViewCell(style: .default, reuseIdentifier: "scanGroupCell")
                 }
-                cell.textLabel?.text = "Scan Group QR Code"
+                cell.textLabel?.text = "Scanear Grupo QR Codigo"
                 cell.textLabel?.textColor = view.tintColor
 
                 return cell
@@ -185,7 +185,7 @@ class NewChatViewController: UITableViewController {
                 } else {
                     cell = UITableViewCell(style: .default, reuseIdentifier: "newContactCell")
                 }
-                cell.textLabel?.text = "New Contact"
+                cell.textLabel?.text = "Nuevo Contacto"
                 cell.textLabel?.textColor = view.tintColor
 
                 return cell
@@ -208,7 +208,7 @@ class NewChatViewController: UITableViewController {
                 } else {
                     cell = ActionCell(style: .default, reuseIdentifier: "actionCell")
                 }
-                cell.actionTitle = "Import Device Contacts"
+                cell.actionTitle = "Importar Contactos Del Dispositivo"
                 return cell
             }
         } else {
@@ -356,10 +356,10 @@ extension NewChatViewController: ContactListDelegate {
             message: "To chat with contacts from your device open the settings menu and enable the Contacts option",
             preferredStyle: .alert
         )
-        alert.addAction(UIAlertAction(title: "Open Settings", style: .default) { _ in
+        alert.addAction(UIAlertAction(title: "Abrir  Ajustes", style: .default) { _ in
             UIApplication.shared.open(URL(string: UIApplication.openSettingsURLString)!)
         })
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel) { _ in
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel) { _ in
         })
         present(alert, animated: true)
     }

@@ -26,7 +26,7 @@ class AccountSetupController: UITableViewController {
     }()
 
     lazy var configProgressAlert: UIAlertController = {
-        let alert = UIAlertController(title: "Configuring Account", message: "\n\n\n", preferredStyle: .alert)
+        let alert = UIAlertController(title: "Configurar ID", message: "\n\n\n", preferredStyle: .alert)
         // temp workaround: add 3 newlines to let alertbox grow to fit progressview
         let progressView = configProgressIndicator
         progressView.translatesAutoresizingMaskIntoConstraints = false
@@ -35,7 +35,7 @@ class AccountSetupController: UITableViewController {
         progressView.centerYAnchor.constraint(equalTo: alert.view.centerYAnchor, constant: 0).isActive = true
         progressView.heightAnchor.constraint(equalToConstant: 65).isActive = true
         progressView.widthAnchor.constraint(equalToConstant: 65).isActive = true
-        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: loginCancelled(_:)))
+        alert.addAction(UIAlertAction(title: "Cancelar", style: .cancel, handler: loginCancelled(_:)))
         return alert
     }()
 
@@ -58,13 +58,13 @@ class AccountSetupController: UITableViewController {
 
     private lazy var restoreCell: ActionCell = {
         let cell = ActionCell(frame: .zero)
-        cell.actionTitle = "Restore from backup"
+        cell.actionTitle = "Restaurar Desde Copia"
         cell.accessibilityIdentifier = "restoreCell"
         return cell
     }()
 
     lazy var imapServerCell: TextFieldCell = {
-        let cell = TextFieldCell(description: "IMAP Server", placeholder: DCConfig.mailServer ?? DCConfig.configuredMailServer, delegate: self)
+        let cell = TextFieldCell(description: "IMAP ", placeholder: DCConfig.mailServer ?? DCConfig.configuredMailServer, delegate: self)
         cell.accessibilityIdentifier = "IMAPServerCell"
         cell.textField.tag = 2
         return cell
@@ -145,7 +145,7 @@ class AccountSetupController: UITableViewController {
 
     // this loginButton can be enabled and disabled
     private lazy var loginButton: UIBarButtonItem = {
-        let button = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(loginButtonPressed))
+        let button = UIBarButtonItem(title: "Iniciar Sesion", style: .done, target: self, action: #selector(loginButtonPressed))
         button.isEnabled = dc_is_configured(mailboxPointer) == 0
         return button
     }()
@@ -177,7 +177,7 @@ class AccountSetupController: UITableViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        title = "Login to your server"
+        title = "Enigma ID Info"
         // navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Close", style: .plain, target: self, action: #selector(closeButtonPressed))
         navigationItem.rightBarButtonItem = loginButton
     }
@@ -235,7 +235,7 @@ class AccountSetupController: UITableViewController {
 
     override func tableView(_: UITableView, titleForHeaderInSection section: Int) -> String? {
         if section == 2 {
-            return "Advanced"
+            return "Avanzado"
         } else {
             return nil
         }
@@ -260,10 +260,10 @@ class AccountSetupController: UITableViewController {
 
     override func tableView(_: UITableView, titleForFooterInSection section: Int) -> String? {
         if section == 0 {
-            return "There are no Delta Chat servers, your data stays on your device!"
+            return "No hay Servidores Enigma, Sus Datos Permanecen En Su Dispositivo!"
         } else if section == 2 {
             if advancedSectionShowing {
-                return "For known email providers additional settings are setup automatically. Sometimes IMAP needs to be enabled in the web frontend. Consult your email provider or friends for help"
+                return "Enigma ocupa el Cifrado de extremo a extremo, (End-to-end encryption (E2EE) es un sistema de comunicación donde solo los usuarios que se comunican pueden leer los mensajes."
             } else {
                 return nil
             }
@@ -585,7 +585,7 @@ class AdvancedSectionHeader: UIView {
 
     private var label: UILabel = {
         let label = UILabel()
-        label.text = "ADVANCED"
+        label.text = "ADVANZADO"
         label.font = UIFont.systemFont(ofSize: 15)
         label.textColor = UIColor.darkGray
         return label
@@ -596,7 +596,7 @@ class AdvancedSectionHeader: UIView {
      */
     private lazy var toggleButton: UILabel = {
         let label = UILabel()
-        label.text = "Show"
+        label.text = "Mostrar"
         label.font = UIFont.systemFont(ofSize: 15, weight: .medium)
         label.textColor = UIColor.systemBlue
         return label
@@ -637,7 +637,7 @@ extension AccountSetupController {
 
     func showProgressHud() {
         configProgressAlert.actions[0].isEnabled = true
-        configProgressAlert.title = "Configuring Account"
+        configProgressAlert.title = "Configurar ID"
         configProgressAlert.message = "\n\n\n"	// workaround to create space for progress indicator
         configProgressIndicator.alpha = 1
         configProgressIndicator.value = 0
@@ -646,7 +646,7 @@ extension AccountSetupController {
     }
 
     func updateProgressHud(error message: String?) {
-        configProgressAlert.title = "Unable to Login!"
+        configProgressAlert.title = "Imposible De Iniciar!"
         configProgressAlert.message = message
         configProgressIndicator.alpha = 0
     }
@@ -654,8 +654,8 @@ extension AccountSetupController {
     func updateProgressHudSuccess(callback: (()->())?) {
         configProgressAlert.actions[0].isEnabled = false
         configProgressIndicator.alpha = 0
-        configProgressAlert.title = "Login Successful!"
-        configProgressAlert.message = "You are ready to use Delta Chat."
+        configProgressAlert.title = "Inicio Correcto!"
+        configProgressAlert.message = "Estas Listo Para Usar Enigma."
         loginButton.isEnabled = dc_is_configured(mailboxPointer) == 0
         DispatchQueue.main.asyncAfter(deadline: .now() + 2, execute: {
             self.configProgressAlert.dismiss(animated: true) {

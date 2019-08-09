@@ -38,7 +38,7 @@ class NewContactController: UITableViewController {
         emailCell.textField.returnKeyType = .next
         nameCell.textField.returnKeyType = .done
 
-        title = "New Contact"
+        title = "Nuevo Contacto"
         doneButton = UIBarButtonItem(barButtonSystemItem: .done, target: self, action: #selector(saveContactButtonPressed))
         doneButton?.isEnabled = false
         navigationItem.rightBarButtonItem = doneButton

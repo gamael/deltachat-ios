@@ -270,17 +270,17 @@ class DCMessage: MessageType {
         case DC_STATE_IN_NOTICED:
             return "Noticed"
         case DC_STATE_IN_SEEN:
-            return "Seen"
+            return "Visto"
         case DC_STATE_OUT_DRAFT:
-            return "Draft"
+            return "Borrador"
         case DC_STATE_OUT_PENDING:
-            return "Pending"
+            return "Pendiente"
         case DC_STATE_OUT_DELIVERED:
-            return "Sent"
+            return "Enviado"
         case DC_STATE_OUT_MDN_RCVD:
-            return "Read"
+            return "Leeido"
         case DC_STATE_OUT_FAILED:
-            return "Failed"
+            return "Fallido"
         default:
             return "Unknown"
         }

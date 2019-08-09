@@ -72,7 +72,7 @@ class TextFieldCell: UITableViewCell {
     }
 
     static func makeEmailCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: "Email", placeholder: "you@example.com")
+        let cell = TextFieldCell(description: "ID", placeholder: "you@enigmachat.ch")
         cell.textField.keyboardType = .emailAddress
         // switch off quicktype
         cell.textField.autocorrectionType = .no
@@ -89,7 +89,7 @@ class TextFieldCell: UITableViewCell {
     }
 
     static func makeNameCell(delegate: UITextFieldDelegate? = nil) -> TextFieldCell {
-        let cell = TextFieldCell(description: "Name", placeholder: "new contacts nickname")
+        let cell = TextFieldCell(description: "Nombre", placeholder: "nuevo apodo de contacto")
         cell.textField.autocapitalizationType = .words
         cell.textField.autocorrectionType = .no
         // .namePhonePad doesn't support autocapitalization
